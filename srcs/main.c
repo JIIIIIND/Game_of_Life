@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/25 19:40:21 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/26 02:16:14 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,15 @@ int		main(int argc, char **argv)
 		}
 		w_idx++;
 	}
-
-	map.world[0][2][3] = '*';
-	map.world[0][2][2] = '*';
-	map.world[0][2][4] = '*';
-
-	map.world[0][10][10] = '*';
-	map.world[0][10][11] = '*';
-	map.world[0][11][9] = '*';
-	map.world[0][11][10] = '*';
-	map.world[0][12][10] = '*';
-
+	map.event.old.x = 0;
+	map.event.old.y = 0;
+	map.event.button = 0;
 	win_main(&(map.cam));
 	map.cam.cell_size = (double)map.limit / (double)map.cam.res.x;
 	printf("%f\n", map.cam.cell_size);
-	//mlx_hook(map.cam.win, MotionNotify, PointerMotionMask, mouse_move, (void *)(&map));
-	mlx_mouse_hook(map.cam.win, mouse_move, (void *)(&map));
+	mlx_hook(map.cam.win, MotionNotify, PointerMotionMask, mouse_event, (void *)(&map));
+	mlx_hook(map.cam.win, ButtonRelease, ButtonReleaseMask, mouse_click, (void *)(&map));
+	mlx_mouse_hook(map.cam.win, mouse_click, (void *)(&map));
 	mlx_key_hook(map.cam.win, keyboard_event, (void *)(&map));
 	mlx_loop_hook(map.cam.mlx, life_algo, (void *)(&map));
 	mlx_loop(map.cam.mlx);
