@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/25 19:13:38 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/25 19:40:21 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		main(int argc, char **argv)
 	map.limit = ft_atoi(argv[1]);
 	map.cam.end.x = map.limit;
 	map.cam.end.y = map.limit;
+	map.start = 0;
 	map.world = (char ***)malloc(sizeof(char **) * 2);
 	while (w_idx < 2)
 	{
@@ -61,6 +62,7 @@ int		main(int argc, char **argv)
 	printf("%f\n", map.cam.cell_size);
 	//mlx_hook(map.cam.win, MotionNotify, PointerMotionMask, mouse_move, (void *)(&map));
 	mlx_mouse_hook(map.cam.win, mouse_move, (void *)(&map));
+	mlx_key_hook(map.cam.win, keyboard_event, (void *)(&map));
 	mlx_loop_hook(map.cam.mlx, life_algo, (void *)(&map));
 	mlx_loop(map.cam.mlx);
 }

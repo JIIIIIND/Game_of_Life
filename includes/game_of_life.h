@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 23:18:28 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/25 19:13:22 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/25 19:39:57 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_map
 	char			***world;
 	t_camera		cam;
 	int				limit;
+	int				start;
 }					t_map;
 
 int					life_algo(t_map *map);
@@ -43,4 +44,5 @@ void				put_buffer(unsigned int **buffer, t_camera *cam, char **map);
 void				win_main(t_camera *cam);
 void				print_plane(char **world, int limit);
 int					mouse_move(int button, int x, int y, void *p);
+int					keyboard_event(int buttion, void *p);
 #endif

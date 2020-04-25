@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/25 00:10:27 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/25 19:40:48 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int		life_algo(t_map *map)
 	char	***world;
 	int		limit;
 
+	if (map->start == 0)
+		return (0);
 	idx_y = 0;
 	world = map->world;
 	limit = map->limit;
