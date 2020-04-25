@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/25 19:41:54 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/25 19:43:33 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		keyboard_event(int key, void *p)
 	t_map	*map;
 
 	map = (t_map *)(p);
-	printf("key: %d\n", key);
-	map->start = switch_flag(map->start);
+	if (key == 32)
+		map->start = switch_flag(map->start);
 	return (0);
 }
