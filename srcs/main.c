@@ -6,13 +6,14 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/25 00:28:56 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/25 19:13:38 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "game_of_life.h"
 #include "mlx.h"
+#include "mlx_int.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -58,6 +59,8 @@ int		main(int argc, char **argv)
 	win_main(&(map.cam));
 	map.cam.cell_size = (double)map.limit / (double)map.cam.res.x;
 	printf("%f\n", map.cam.cell_size);
+	//mlx_hook(map.cam.win, MotionNotify, PointerMotionMask, mouse_move, (void *)(&map));
+	mlx_mouse_hook(map.cam.win, mouse_move, (void *)(&map));
 	mlx_loop_hook(map.cam.mlx, life_algo, (void *)(&map));
 	mlx_loop(map.cam.mlx);
 }

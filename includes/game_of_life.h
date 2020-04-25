@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 23:18:28 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/25 00:09:55 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/25 19:13:22 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void				draw_screen(unsigned int **buffer, t_camera *cam);
 void				put_buffer(unsigned int **buffer, t_camera *cam, char **map);
 void				win_main(t_camera *cam);
 void				print_plane(char **world, int limit);
-
+int					mouse_move(int button, int x, int y, void *p);
 #endif
