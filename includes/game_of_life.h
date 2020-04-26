@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 23:18:28 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/26 02:16:39 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/26 21:04:19 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_map
 	t_key_event		event;
 	int				limit;
 	int				start;
+	char			cnt;
 }					t_map;
 
 int					life_algo(t_map *map);

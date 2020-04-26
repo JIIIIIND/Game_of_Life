@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/26 20:30:43 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/26 20:54:17 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,33 @@ void	camera_move_right(t_map *map)
 	}
 }
 
+void	camera_zoom_in(t_map *map)
+{
+	int		dis;
+
+	dis = map->cam.end.x - map->cam.start.x;
+	if (dis > 1)
+	{
+		map->cam.end.x -= 1;
+		map->cam.end.y -= 1;
+		map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
+			(double)map->cam.res.x;
+	}
+}
+
+void	camera_zoom_out(t_map *map)
+{
+	int		limit;
+
+	limit = map->limit - 1;
+	if (map->cam.end.x < limit)
+		map->cam.end.x += 1;
+	if (map->cam.end.y < limit)
+		map->cam.end.y += 1;
+	map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
+		(double)map->cam.res.x;
+}
+
 int		keyboard_event(int key, void *p)
 {
 	t_map	*map;
@@ -80,5 +107,9 @@ int		keyboard_event(int key, void *p)
 		camera_move_right(map);
 	else if (key == 65364)
 		camera_move_down(map);
+	else if (key == 61)
+		camera_zoom_in(map);
+	else if (key == 45)
+		camera_zoom_out(map);
 	return (0);
 }

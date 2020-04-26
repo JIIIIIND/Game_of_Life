@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/26 02:37:44 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/26 21:10:16 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		life_algo(t_map *map)
 	idx_y = 0;
 	world = map->world;
 	limit = map->limit;
-	put_buffer(map->cam.buffer, &(map->cam), world[0]);
+	put_buffer(map->cam.buffer, &(map->cam), world[map->cnt % 2]);
 	draw_screen(map->cam.buffer, &(map->cam));
 	if (map->start == 0)
 		return (0);
@@ -95,13 +95,14 @@ int		life_algo(t_map *map)
 		idx_x = 0;
 		while (idx_x < limit)
 		{
-			(world[1][idx_y][idx_x]) = check_alive(world[0], idx_x, idx_y,
-					get_live_neighbor(world[0], idx_x, idx_y, limit));
+			(world[(map->cnt + 1) % 2][idx_y][idx_x]) = check_alive(world[map->cnt % 2], idx_x, idx_y,
+					get_live_neighbor(world[map->cnt % 2], idx_x, idx_y, limit));
 			idx_x++;
 		}
 		idx_y++;
 	}
-	update_planes(world, limit);
+	map->cnt = (map->cnt + 1) % 2;
+	//update_planes(world, limit);
 	sleep(1);
 	return (0);
 }
