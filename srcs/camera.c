@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 22:59:20 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/25 00:22:01 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/26 20:08:31 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void			put_buffer(unsigned int **buffer, t_camera *cam, char **map)
 	double	map_y;
 
 	buf_x = 0;
-	map_x = 0;
+	map_x = cam->start.x;
 	while (buf_x < cam->res.x)
 	{
 		buf_y = 0;
-		map_y = 0;
+		map_y = cam->start.y;
 		if ((int)map_x < cam->end.x)
 		{
 			while (buf_y < cam->res.y)

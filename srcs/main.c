@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/26 02:16:14 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/26 20:33:01 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int		main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	map.limit = ft_atoi(argv[1]);
-	map.cam.end.x = map.limit;
-	map.cam.end.y = map.limit;
+	map.cam.start.x = 0;
+	map.cam.start.y = 0;
+	map.cam.end.x = map.limit / 2;
+	map.cam.end.y = map.limit / 2;
 	map.start = 0;
 	map.world = (char ***)malloc(sizeof(char **) * 2);
 	while (w_idx < 2)
@@ -50,7 +52,7 @@ int		main(int argc, char **argv)
 	map.event.old.y = 0;
 	map.event.button = 0;
 	win_main(&(map.cam));
-	map.cam.cell_size = (double)map.limit / (double)map.cam.res.x;
+	map.cam.cell_size = (double)(map.cam.end.x - map.cam.start.x) / (double)map.cam.res.x;
 	printf("%f\n", map.cam.cell_size);
 	mlx_hook(map.cam.win, MotionNotify, PointerMotionMask, mouse_event, (void *)(&map));
 	mlx_hook(map.cam.win, ButtonRelease, ButtonReleaseMask, mouse_click, (void *)(&map));
