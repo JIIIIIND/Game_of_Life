@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/28 22:09:03 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/28 23:20:46 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,22 @@ int		life_algo(t_map *map)
 	int		idx_y;
 	char	***world;
 	int		limit;
+	static int		cnt;
 
 	idx_y = 0;
 	world = map->world;
 	limit = map->limit;
 	put_buffer(map->cam.buffer, &(map->cam), world[map->cnt % 2]);
 	draw_screen(map->cam.buffer, &(map->cam));
-	print_plane(world[map->cnt % 2], limit);
 	if (map->start == 0)
 		return (0);
+	if (cnt++ < 50)
+	{
+		printf("cnt %d\n", cnt);
+		return (0);
+	}
+	else
+		cnt = 0;
 	while (idx_y < limit)
 	{
 		idx_x = 0;
@@ -104,6 +111,5 @@ int		life_algo(t_map *map)
 	}
 	map->cnt = (map->cnt + 1) % 2;
 	//update_planes(world, limit);
-	sleep(1);
 	return (0);
 }

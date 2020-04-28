@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 22:59:20 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/28 22:16:58 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/28 23:01:48 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void			draw_screen(unsigned int **buffer, t_camera *cam)
 		while (x < cam->res.x)
 		{
 			mlx_pixel_put(cam->mlx, cam->win, x, y, buffer[y][x]);
-			buffer[y][x] = 0;
 			x++;
 		}
 		y++;
