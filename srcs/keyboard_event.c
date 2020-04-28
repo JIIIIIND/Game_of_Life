@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/26 20:54:17 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/28 21:18:09 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,15 @@ void	camera_zoom_out(t_map *map)
 {
 	int		limit;
 
-	limit = map->limit - 1;
-	if (map->cam.end.x < limit)
+	limit = map->limit;
+	if ((map->cam.end.x < limit) && (map->cam.end.y < limit))
+	{
 		map->cam.end.x += 1;
-	if (map->cam.end.y < limit)
 		map->cam.end.y += 1;
-	map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
-		(double)map->cam.res.x;
+		map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
+			(double)map->cam.res.x;
+		printf("x: %d y: %d\n", map->cam.end.x, map->cam.end.y);
+	}
 }
 
 int		keyboard_event(int key, void *p)
