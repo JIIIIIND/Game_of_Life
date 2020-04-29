@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 23:45:52 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/26 22:36:33 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/29 16:18:43 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void		win_main(t_camera *cam)
 	while (index < cam->res.y)
 	{
 		cam->buffer[index] =
-			(unsigned int *)malloc(sizeof(unsigned int) * cam->res.x);
+			(unsigned int *)malloc(sizeof(unsigned int) * cam->res.x + 100);
 		index++;
 	}
 	cam->mlx = mlx_init();
-	cam->win = mlx_new_window(cam->mlx, cam->res.x, cam->res.y, "test");
+	cam->win = mlx_new_window(cam->mlx, cam->res.x + 100, cam->res.y, "test");
 }

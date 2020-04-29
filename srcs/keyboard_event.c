@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/28 21:18:09 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/29 17:23:12 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,7 @@ int		keyboard_event(int key, void *p)
 		camera_zoom_in(map);
 	else if (key == 45)
 		camera_zoom_out(map);
+	else if (key == 65307)
+		clear_heap(map);
 	return (0);
 }

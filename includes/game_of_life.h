@@ -6,12 +6,14 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 23:18:28 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/26 21:04:19 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/29 21:46:22 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_OF_LIFE_H
 # define GAME_OF_LIFE_H
+
+# include "libft.h"
 
 typedef struct		s_point
 {
@@ -44,14 +46,16 @@ typedef struct		s_map
 	int				limit;
 	int				start;
 	char			cnt;
+	t_list			*head;
 }					t_map;
 
 int					life_algo(t_map *map);
-void				draw_screen(unsigned int **buffer, t_camera *cam);
-void				put_buffer(unsigned int **buffer, t_camera *cam, char **map);
+void				draw_screen(unsigned int **buffer, t_camera *cam, t_list **lst);
+void				put_buffer(unsigned int **buffer, t_camera *cam, char **map, t_list **lst);
 void				win_main(t_camera *cam);
 void				print_plane(char **world, int limit);
 int					mouse_click(int button, int x, int y, void *p);
 int					mouse_event(int x, int y, void *p);
 int					keyboard_event(int buttion, void *p);
+int					clear_heap(t_map *map);
 #endif

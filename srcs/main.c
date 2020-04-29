@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/26 21:04:47 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/29 17:19:55 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+int		clear_heap(t_map *map)
+{
+	int		index;
+	
+	index = 0;
+	while (index < map->limit)
+	{
+		free((map->world)[0][index]);
+		free((map->world)[1][index]);
+		index++;
+	}
+	free((map->world)[0]);
+	free((map->world)[1]);
+	free(map->world);
+	index = 0;
+	while (index < (map->cam.res.y))
+	{
+		free((map->cam.buffer)[index]);
+		index++;
+	}
+	free(map->cam.buffer);
+	exit(0);
+}
 
 int		main(int argc, char **argv)
 {
@@ -54,7 +78,6 @@ int		main(int argc, char **argv)
 	map.event.button = 0;
 	win_main(&(map.cam));
 	map.cam.cell_size = (double)(map.cam.end.x - map.cam.start.x) / (double)map.cam.res.x;
-	printf("%f\n", map.cam.cell_size);
 	mlx_hook(map.cam.win, MotionNotify, PointerMotionMask, mouse_event, (void *)(&map));
 	mlx_hook(map.cam.win, ButtonRelease, ButtonReleaseMask, mouse_click, (void *)(&map));
 	mlx_mouse_hook(map.cam.win, mouse_click, (void *)(&map));
