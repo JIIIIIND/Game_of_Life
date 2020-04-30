@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 22:59:20 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/29 23:25:26 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/30 19:58:30 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,26 +72,45 @@ void			draw_ui(unsigned int **buffer)
 }
 */
 
+void			draw_squre(t_point *point, t_camera *cam, char **map)
+{
+	double		size;
+	t_point		pixel;
+	t_point		index;
+
+	size = ((double)cam->res.x / (double)(cam->end.x - cam->start.x));
+	pixel.y = (int)(point->y * size);
+	index.y = (int)(pixel.y + size);
+	while (pixel.y < index.y)
+	{
+
+		pixel.x = (int)(point->x * size);
+		index.x = (int)(pixel.x + size);
+		while (pixel.x < index.x)
+		{
+			mlx_pixel_put(cam->mlx, cam->win, pixel.x, pixel.y,
+					get_color(map, point->x, point->y));
+			pixel.x += 1;
+		}
+		pixel.y += 1;
+	}
+}
+
 void			delete_point(void *point)
 {
 	free(((t_point *)point));
 }
 
-void			draw_screen(unsigned int **buffer, t_camera *cam, t_list **lst)
+void			draw_screen(char **map, t_camera *cam, t_list **lst)
 {
-	int		x;
-	int		y;
 	t_list	*node;
 
 	node = *lst;
-	printf("size: %d\n", ft_lstsize(*lst));
 	if (node != 0)
 	{
 		while (node != 0)
 		{
-			x = ((t_point *)(node->content))->x;
-			y = ((t_point *)(node->content))->y;
-			mlx_pixel_put(cam->mlx, cam->win, x, y, buffer[y][x]);
+			draw_squre((t_point *)(node->content), cam, map);
 			node = node->next;
 		}
 		ft_lstclear(lst, &delete_point);
