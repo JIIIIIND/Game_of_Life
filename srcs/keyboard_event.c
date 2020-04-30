@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/29 17:23:12 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/30 20:41:22 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	camera_zoom_out(t_map *map)
 		map->cam.end.y += 1;
 		map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
 			(double)map->cam.res.x;
-		printf("x: %d y: %d\n", map->cam.end.x, map->cam.end.y);
 	}
 }
 

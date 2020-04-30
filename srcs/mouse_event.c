@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 16:40:36 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/29 21:47:07 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/30 20:43:43 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 #include "game_of_life.h"
 #include <stdio.h>
 
-void	switch_value(char **world, t_point point)
+void	switch_value(char **world, t_point point, t_list **head)
 {
+	t_point	*pnt;
+
+	pnt = (t_point *)malloc(sizeof(t_point));
+	pnt->x = point.x;
+	pnt->y = point.y;
+	ft_lstadd_back(head, ft_lstnew(pnt));
 	if (world[point.y][point.x] == '*')
 		world[point.y][point.x] = ' ';
 	else
@@ -56,26 +62,24 @@ int		mouse_event(int x, int y, void *p)
 	t_camera		*cam;
 	t_key_event		*event;
 	t_point			point;
-	int				map_x;
-	int				map_y;
+	t_map			*map;
 
-	event = &(((t_map *)(p))->event);
+	map = (t_map *)p;
+	event = &(map->event);
 	if (event->button == 1)
 	{
-		cam = &(((t_map *)p)->cam);
+		cam = &(map->cam);
 		if (x >= cam->res.x || y >= cam->res.y || x < 0 || y < 0)
 			return (0);
-		map_x = (int)((double)(x * (cam->end.x - cam->start.x)) / (double)(cam->res.x) + cam->start.x);
-		map_y = (int)((double)(y * (cam->end.y - cam->start.y)) / (double)(cam->res.y) + cam->start.y);
-		point.x = map_x;
-		point.y = map_y;
-		if ((event->old.x == map_x) && (event->old.y == map_y))
+		point.x = (int)((double)(x * (cam->end.x - cam->start.x)) / (double)(cam->res.x) + cam->start.x);
+		point.y = (int)((double)(y * (cam->end.y - cam->start.y)) / (double)(cam->res.y) + cam->start.y);
+		if ((event->old.x == point.x) && (event->old.y == point.y))
 			return (0);
-		event->old.x = map_x;
-		event->old.y = map_y;
-		switch_value((((t_map *)(p))->world)[((t_map *)p)->cnt % 2], point);
-		put_buffer(cam->buffer, cam, (((t_map *)p)->world)[((t_map *)p)->cnt % 2], &(((t_map *)p)->head));
-		draw_screen(cam->buffer, cam, &(((t_map *)p)->head));
+		event->old.x = point.x;
+		event->old.y = point.y;
+		switch_value((map->world)[map->cnt % 2], point, &(map->head));
+		//put_buffer(cam->buffer, cam, (((t_map *)p)->world)[((t_map *)p)->cnt % 2], &(((t_map *)p)->head));
+		draw_screen((map->world)[map->cnt % 2], cam->buffer, cam, &(map->head));
 	}
 	return (0);
 }

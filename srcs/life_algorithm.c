@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/29 23:28:17 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/30 20:44:09 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,33 @@ int		get_live_neighbor(char **world, t_point point, int limit)
 	return (result);
 }
 
-char	check_alive(char **buf, t_point point, int neighbor)
+char	check_alive(char **buf, t_point point, int neighbor, t_list **head)
 {
+	t_point	*pnt;
+
 	if (buf[point.y][point.x] == '*')
 	{
 		if ((neighbor < 2) || (neighbor > 3))
+		{
+			pnt = (t_point *)malloc(sizeof(t_point));
+			pnt->x = point.x;
+			pnt->y = point.y;
+			ft_lstadd_back(head, ft_lstnew(pnt));
 			return (' ');
+		}
 		else
 			return ('*');
 	}
 	else
 	{
 		if (neighbor == 3)
+		{
+			pnt = (t_point *)malloc(sizeof(t_point));
+			pnt->x = point.x;
+			pnt->y = point.y;
+			ft_lstadd_back(head, ft_lstnew(pnt));
 			return ('*');
+		}
 		else
 			return (' ');
 	}
@@ -89,8 +103,8 @@ int		life_algo(t_map *map)
 	point.y = 0;
 	world = map->world;
 	limit = map->limit;
-	put_buffer(map->cam.buffer, &(map->cam), world[map->cnt % 2], &(map->head));
-	draw_screen(map->cam.buffer, &(map->cam), &(map->head));
+	put_buffer(map->cam.buffer, &(map->cam), world[map->cnt % 2]);
+	draw_screen(world[map->cnt % 2], map->cam.buffer, &(map->cam), &(map->head));
 	if (map->start == 0)
 		return (0);
 	if (cnt++ < 50)
@@ -104,7 +118,8 @@ int		life_algo(t_map *map)
 		{
 			(world[(map->cnt + 1) % 2][point.y][point.x]) =
 				check_alive(world[map->cnt % 2], point,
-					get_live_neighbor(world[map->cnt % 2], point, limit));
+					get_live_neighbor(world[map->cnt % 2], point, limit),
+					&(map->head));
 			point.x++;
 		}
 		point.y++;
