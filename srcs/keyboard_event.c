@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/30 19:48:25 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/30 20:41:22 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	camera_move_right(t_map *map)
 void	camera_zoom_in(t_map *map)
 {
 	int		dis;
-	t_point	index;
-	t_point	*point;
 
 	dis = map->cam.end.x - map->cam.start.x;
 	if (dis > 1)
@@ -78,28 +76,12 @@ void	camera_zoom_in(t_map *map)
 		map->cam.end.y -= 1;
 		map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
 			(double)map->cam.res.x;
-		index.y = map->cam.start.y;
-		while (index.y < map->cam.end.y)
-		{
-			index.x = map->cam.start.x;
-			while (index.x < map->cam.end.x)
-			{
-				point = (t_point *)malloc(sizeof(t_point));
-				point->x = index.x;
-				point->y = index.y;
-				ft_lstadd_back(&(map->head), ft_lstnew(point));
-				index.x += 1;
-			}
-			index.y += 1;
-		}
 	}
 }
 
 void	camera_zoom_out(t_map *map)
 {
 	int		limit;
-	t_point	index;
-	t_point	*point;
 
 	limit = map->limit;
 	if ((map->cam.end.x < limit) && (map->cam.end.y < limit))
@@ -108,21 +90,6 @@ void	camera_zoom_out(t_map *map)
 		map->cam.end.y += 1;
 		map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
 			(double)map->cam.res.x;
-		printf("x: %d y: %d\n", map->cam.end.x, map->cam.end.y);
-		index.y = map->cam.start.y;
-		while (index.y < map->cam.end.y)
-		{
-			index.x = map->cam.start.x;
-			while (index.x < map->cam.end.x)
-			{
-				point = (t_point *)malloc(sizeof(t_point));
-				point->x = index.x;
-				point->y = index.y;
-				ft_lstadd_back(&(map->head), ft_lstnew(point));
-				index.x += 1;
-			}
-			index.y += 1;
-		}
 	}
 }
 

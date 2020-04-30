@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 22:59:20 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/30 19:58:30 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/30 20:42:18 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,12 @@ unsigned int	get_color(char **map, int x, int y)
 		return (0x00000000);
 }
 
-void			insert_node(t_list **lst, int x, int y)
-{
-	t_point	*point;
-
-	point = (t_point *)malloc(sizeof(t_point));
-	point->x = x;
-	point->y = y;
-	ft_lstadd_back(lst, ft_lstnew(point));
-}
-
-void			put_buffer(unsigned int **buffer, t_camera *cam, char **map, t_list **lst)
+void			put_buffer(unsigned int **buffer, t_camera *cam, char **map)
 {
 	int				buf_x;
 	int				buf_y;
 	double			map_x;
 	double			map_y;
-	unsigned int	old;
 
 	buf_x = 0;
 	map_x = cam->start.x;
@@ -50,10 +39,7 @@ void			put_buffer(unsigned int **buffer, t_camera *cam, char **map, t_list **lst
 		map_y = cam->start.y;
 		while (buf_y < cam->res.y)
 		{
-			old = buffer[buf_y][buf_x];
 			buffer[buf_y][buf_x] = get_color(map, (int)map_x, (int)map_y);
-			if (old != buffer[buf_y][buf_x])
-				insert_node(lst, buf_x, buf_y);
 			buf_y++;
 			map_y += cam->cell_size;
 			if (map_y > cam->end.y)
@@ -79,13 +65,12 @@ void			draw_squre(t_point *point, t_camera *cam, char **map)
 	t_point		index;
 
 	size = ((double)cam->res.x / (double)(cam->end.x - cam->start.x));
-	pixel.y = (int)(point->y * size);
-	index.y = (int)(pixel.y + size);
+	pixel.y = (int)(point->y * size + 0.5);
+	index.y = (int)(pixel.y + size + 0.5);
 	while (pixel.y < index.y)
 	{
-
-		pixel.x = (int)(point->x * size);
-		index.x = (int)(pixel.x + size);
+		pixel.x = (int)(point->x * size + 0.5);
+		index.x = (int)(pixel.x + size + 0.5);
 		while (pixel.x < index.x)
 		{
 			mlx_pixel_put(cam->mlx, cam->win, pixel.x, pixel.y,
@@ -101,9 +86,11 @@ void			delete_point(void *point)
 	free(((t_point *)point));
 }
 
-void			draw_screen(char **map, t_camera *cam, t_list **lst)
+void			draw_screen(char **map, unsigned int **buffer, t_camera *cam, t_list **lst)
 {
 	t_list	*node;
+	int		x;
+	int		y;
 
 	node = *lst;
 	if (node != 0)
@@ -115,7 +102,6 @@ void			draw_screen(char **map, t_camera *cam, t_list **lst)
 		}
 		ft_lstclear(lst, &delete_point);
 	}
-	/*
 	else
 	{
 		y = 0;
@@ -130,5 +116,4 @@ void			draw_screen(char **map, t_camera *cam, t_list **lst)
 			y++;
 		}
 	}
-	*/
 }

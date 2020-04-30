@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 16:40:36 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/30 19:41:58 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/30 20:43:43 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		mouse_event(int x, int y, void *p)
 		event->old.y = point.y;
 		switch_value((map->world)[map->cnt % 2], point, &(map->head));
 		//put_buffer(cam->buffer, cam, (((t_map *)p)->world)[((t_map *)p)->cnt % 2], &(((t_map *)p)->head));
-		draw_screen((map->world)[map->cnt % 2], cam, &(map->head));
+		draw_screen((map->world)[map->cnt % 2], cam->buffer, cam, &(map->head));
 	}
 	return (0);
 }

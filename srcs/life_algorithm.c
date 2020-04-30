@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/30 19:39:51 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/04/30 20:44:09 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int		life_algo(t_map *map)
 	point.y = 0;
 	world = map->world;
 	limit = map->limit;
-	//put_buffer(map->cam.buffer, &(map->cam), world[map->cnt % 2], &(map->head));
-	draw_screen(world[map->cnt % 2], &(map->cam), &(map->head));
+	put_buffer(map->cam.buffer, &(map->cam), world[map->cnt % 2]);
+	draw_screen(world[map->cnt % 2], map->cam.buffer, &(map->cam), &(map->head));
 	if (map->start == 0)
 		return (0);
 	if (cnt++ < 50)
