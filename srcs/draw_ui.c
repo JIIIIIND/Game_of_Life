@@ -1,0 +1,101 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_ui.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/01 18:40:55 by jinwkim           #+#    #+#             */
+/*   Updated: 2020/05/01 20:45:18 by jinwkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include "mlx.h"
+#include "mlx_int.h"
+#include "game_of_life.h"
+
+void		put_color(char *data, t_point pos, int size_line,
+						unsigned int color)
+{
+	data[pos.y * size_line + pos.x * 4 + 3] = color >> 24;
+	data[pos.y * size_line + pos.x * 4 + 2] = (color & 0x00ff0000) >> 16;
+	data[pos.y * size_line + pos.x * 4 + 1] = (color & 0x0000ff00) >> 8;
+	data[pos.y * size_line + pos.x * 4] = (color & 0x000000ff);
+}
+
+void		draw_map_square(char *data, int width, t_point start, t_point end)
+{
+	int		x;
+	int		y;
+	t_point	pos;
+
+	y = start.y;
+	while (y < end.y)
+	{
+		pos.x = start.x;
+		pos.y = y;
+		put_color(data, pos, width, 0x00ffffff);
+		pos.x = end.x;
+		put_color(data, pos, width, 0x00ffffff);
+		y++;
+	}
+	x = start.x;
+	while (x < end.x)
+	{
+		pos.y = start.y;
+		pos.x = x;
+		put_color(data, pos, width, 0x00ffffff);
+		pos.y = end.y;
+		put_color(data, pos, width, 0x00ffffff);
+		x++;
+	}
+}
+
+void		draw_minimap(char *data, int width)
+{
+	t_point	start;
+	t_point	end;
+
+	start.x = 17;
+	start.y = 17;
+	end.x = 81;
+	end.y = 81;
+	draw_map_square(data, width, start, end);
+}
+
+void		put_panel(char *data, int width, int height)
+{
+	int		x;
+	int		y;
+	t_point	pos;
+
+	y = 0;
+	while (y < height)
+	{
+		pos.y = y;
+		x = 0;
+		while (x < width)
+		{
+			pos.x = x;
+			put_color(data, pos, width, 0x00555555);
+			x++;
+		}
+		y++;
+	}
+}
+
+void		draw_panel(t_camera *cam)
+{
+	t_img	*img;
+	char	*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+
+	img = mlx_new_image(cam->mlx, 100, 512);
+	data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
+	put_panel(data, size_line, 512);
+	draw_minimap(data, size_line);
+	mlx_put_image_to_window(cam->mlx, cam->win, img, 512, 0);
+}
