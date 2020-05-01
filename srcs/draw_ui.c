@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 18:40:55 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/01 20:45:18 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/01 21:14:44 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,25 @@ void		draw_map_square(char *data, int width, t_point start, t_point end)
 	}
 }
 
-void		draw_minimap(char *data, int width)
+void		draw_minimap(char *data, t_camera *cam, int width, int limit)
 {
 	t_point	start;
 	t_point	end;
+	t_point	map_start;
+	t_point	map_end;
+	double	ratio;
 
 	start.x = 17;
 	start.y = 17;
 	end.x = 81;
 	end.y = 81;
 	draw_map_square(data, width, start, end);
+	ratio = 64.0f / (double)(limit);
+	map_start.x = (int)((double)(cam->start.x) * ratio) + 17;
+	map_start.y = (int)((double)(cam->start.y) * ratio) + 17;
+	map_end.x = (int)((double)(cam->end.x + 1) * ratio) + 17;
+	map_end.y = (int)((double)(cam->end.y + 1) * ratio) + 17;
+	draw_map_square(data, width, map_start, map_end);
 }
 
 void		put_panel(char *data, int width, int height)
@@ -85,7 +94,7 @@ void		put_panel(char *data, int width, int height)
 	}
 }
 
-void		draw_panel(t_camera *cam)
+void		draw_panel(t_camera *cam, int limit)
 {
 	t_img	*img;
 	char	*data;
@@ -96,6 +105,6 @@ void		draw_panel(t_camera *cam)
 	img = mlx_new_image(cam->mlx, 100, 512);
 	data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
 	put_panel(data, size_line, 512);
-	draw_minimap(data, size_line);
+	draw_minimap(data, cam, size_line, limit);
 	mlx_put_image_to_window(cam->mlx, cam->win, img, 512, 0);
 }

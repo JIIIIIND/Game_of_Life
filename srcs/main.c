@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/01 19:48:31 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/01 21:07:52 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "game_of_life.h"
 #include "mlx.h"
 #include "mlx_int.h"
-#include "draw_ui.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -79,7 +78,6 @@ int		main(int argc, char **argv)
 	map.event.button = 0;
 	win_main(&(map.cam));
 	map.cam.cell_size = (double)(map.cam.end.x - map.cam.start.x) / (double)map.cam.res.x;
-	draw_panel(&(map.cam));
 	mlx_hook(map.cam.win, MotionNotify, PointerMotionMask, mouse_event, (void *)(&map));
 	mlx_hook(map.cam.win, ButtonRelease, ButtonReleaseMask, mouse_click, (void *)(&map));
 	mlx_mouse_hook(map.cam.win, mouse_click, (void *)(&map));

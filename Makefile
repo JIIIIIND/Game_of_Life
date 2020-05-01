@@ -6,7 +6,7 @@
 #    By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/22 22:13:59 by jinwkim           #+#    #+#              #
-#    Updated: 2020/05/01 18:53:16 by jinwkim          ###   ########.fr        #
+#    Updated: 2020/05/01 21:15:51 by jinwkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 SRCS	= ./srcs/main.c \
 		  ./srcs/life_algorithm.c \
-		  ./srcs/test.c \
+		  ./srcs/win_main.c \
 		  ./srcs/camera.c \
 		  ./srcs/print_plane.c \
 		  ./srcs/mouse_event.c \

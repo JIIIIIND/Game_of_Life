@@ -6,11 +6,12 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/30 20:44:09 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/01 21:07:44 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_of_life.h"
+#include "draw_ui.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -105,6 +106,7 @@ int		life_algo(t_map *map)
 	limit = map->limit;
 	put_buffer(map->cam.buffer, &(map->cam), world[map->cnt % 2]);
 	draw_screen(world[map->cnt % 2], map->cam.buffer, &(map->cam), &(map->head));
+	draw_panel(&(map->cam), map->limit);
 	if (map->start == 0)
 		return (0);
 	if (cnt++ < 50)
