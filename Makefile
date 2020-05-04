@@ -6,7 +6,7 @@
 #    By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/22 22:13:59 by jinwkim           #+#    #+#              #
-#    Updated: 2020/05/01 21:15:51 by jinwkim          ###   ########.fr        #
+#    Updated: 2020/05/04 16:52:28 by jinwkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,11 @@ SRCS	= ./srcs/main.c \
 		  ./srcs/print_plane.c \
 		  ./srcs/mouse_event.c \
 		  ./srcs/keyboard_event.c \
-		  ./srcs/draw_ui.c
+		  ./srcs/draw_ui.c\
+		  ./srcs/draw_btn.c
 OBJS	= $(SRCS:.c=.o)
 INC		= -I./includes
-LIB		= -L./Library -lft -lmlx -lX11 -lXext -lm
+LIB		= -L./Library -lft -lmlx -lX11 -lXext -lbsd -lm
 
 all:	$(NAME)
 

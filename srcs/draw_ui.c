@@ -6,13 +6,14 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 18:40:55 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/01 21:14:44 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/04 16:52:04 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "mlx.h"
 #include "mlx_int.h"
+#include "draw_btn.h"
 #include "game_of_life.h"
 
 void		put_color(char *data, t_point pos, int size_line,
@@ -106,5 +107,6 @@ void		draw_panel(t_camera *cam, int limit)
 	data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
 	put_panel(data, size_line, 512);
 	draw_minimap(data, cam, size_line, limit);
+	draw_btn(cam->mlx, data, size_line);
 	mlx_put_image_to_window(cam->mlx, cam->win, img, 512, 0);
 }
