@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 15:10:05 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 17:05:21 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/04 19:49:17 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	draw_start(void *mlx, char *data, int size_line, t_point start)
 	}
 }
 
-void	draw_btn(void *mlx, char *data, int size_line)
+void	draw_btn(void *mlx, char *data, int size_line, int start_flag)
 {
 	t_point start;
 	t_point	end;
@@ -152,8 +152,10 @@ void	draw_btn(void *mlx, char *data, int size_line)
 		end.x = start.x + 64;
 		end.y = start.y + 64;
 		draw_map_square(data, size_line, start, end);
-		if (index == 0)
+		if ((start_flag == 0) && (index == 0))
 			draw_start(mlx, data, size_line, start);
+		else if ((start_flag == 1) && (index == 0))
+			draw_pause(mlx, data, size_line, start);
 		else if (index == 1)
 			draw_speed_up(mlx, data, size_line, start);
 		else if (index == 2)

@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 18:40:55 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 16:52:04 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/04 19:45:36 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void		put_panel(char *data, int width, int height)
 	}
 }
 
-void		draw_panel(t_camera *cam, int limit)
+void		draw_panel(t_camera *cam, int limit, int start_flag)
 {
 	t_img	*img;
 	char	*data;
@@ -107,6 +107,6 @@ void		draw_panel(t_camera *cam, int limit)
 	data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
 	put_panel(data, size_line, 512);
 	draw_minimap(data, cam, size_line, limit);
-	draw_btn(cam->mlx, data, size_line);
+	draw_btn(cam->mlx, data, size_line, start_flag);
 	mlx_put_image_to_window(cam->mlx, cam->win, img, 512, 0);
 }
