@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 22:59:20 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/01 19:43:50 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/04 14:51:34 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@ void			put_buffer(unsigned int **buffer, t_camera *cam, char **map)
 			map_x = cam->end.x;
 	}
 }
-/*
-void			draw_ui(unsigned int **buffer)
-{
-
-}
-*/
 
 void			draw_squre(t_point *point, t_camera *cam, char **map)
 {
@@ -66,16 +60,17 @@ void			draw_squre(t_point *point, t_camera *cam, char **map)
 	t_point		index;
 
 	size = ((double)cam->res.x / (double)(cam->end.x - cam->start.x));
-	pixel.y = (int)(point->y * size);
+	pixel.y = (int)((point->y - cam->start.y) * size);
 	index.y = (int)(pixel.y + size);
 	while (pixel.y < index.y)
 	{
-		pixel.x = (int)(point->x * size);
+		pixel.x = (int)((point->x - cam->start.x) * size);
 		index.x = (int)(pixel.x + size);
 		while (pixel.x < index.x)
 		{
 			mlx_pixel_put(cam->mlx, cam->win, pixel.x, pixel.y,
 					get_color(map, point->x, point->y));
+					
 			pixel.x += 1;
 		}
 		pixel.y += 1;

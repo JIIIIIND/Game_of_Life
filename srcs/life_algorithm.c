@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/01 21:07:44 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/04 14:34:45 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,19 @@ int		get_live_neighbor(char **world, t_point point, int limit)
 	return (result);
 }
 
-char	check_alive(char **buf, t_point point, int neighbor, t_list **head)
+char	check_alive(char **buf, t_point point, int neighbor)
 {
-	t_point	*pnt;
-
 	if (buf[point.y][point.x] == '*')
 	{
 		if ((neighbor < 2) || (neighbor > 3))
-		{
-			pnt = (t_point *)malloc(sizeof(t_point));
-			pnt->x = point.x;
-			pnt->y = point.y;
-			ft_lstadd_back(head, ft_lstnew(pnt));
 			return (' ');
-		}
 		else
 			return ('*');
 	}
 	else
 	{
 		if (neighbor == 3)
-		{
-			pnt = (t_point *)malloc(sizeof(t_point));
-			pnt->x = point.x;
-			pnt->y = point.y;
-			ft_lstadd_back(head, ft_lstnew(pnt));
 			return ('*');
-		}
 		else
 			return (' ');
 	}
@@ -120,8 +106,7 @@ int		life_algo(t_map *map)
 		{
 			(world[(map->cnt + 1) % 2][point.y][point.x]) =
 				check_alive(world[map->cnt % 2], point,
-					get_live_neighbor(world[map->cnt % 2], point, limit),
-					&(map->head));
+					get_live_neighbor(world[map->cnt % 2], point, limit));
 			point.x++;
 		}
 		point.y++;
