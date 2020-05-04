@@ -6,13 +6,14 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 16:40:36 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 14:30:27 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/04 20:03:20 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_int.h"
 #include "mlx.h"
 #include "game_of_life.h"
+#include "draw_btn.h"
 #include <stdio.h>
 
 void	switch_value(char **world, t_point point, t_list **head)
@@ -29,6 +30,22 @@ void	switch_value(char **world, t_point point, t_list **head)
 		world[point.y][point.x] = '*';
 }
 
+int		mouse_release(int button, int x, int y, void *p)
+{
+	t_map		*map;
+
+	map = (t_map *)p;
+	if (button == 1)
+	{
+		if (x > 512 && x < 612)
+			btn_check(button, x, y, map);
+		map->event.button = 0;
+		map->event.old.x = -1;
+		map->event.old.y = -1;
+	}
+	return (0);
+}
+
 int		mouse_click(int button, int x, int y, void *p)
 {
 	t_map		*map;
@@ -41,13 +58,7 @@ int		mouse_click(int button, int x, int y, void *p)
 			(double)(map->cam.res.y) + map->cam.start.y);
 	if (button == 1)
 	{
-		if (map->event.button == 1)
-		{
-			map->event.old.x = -1;
-			map->event.old.y = -1;
-			map->event.button = 0;
-		}
-		else
+		if (map->start == 0)
 		{
 			map->event.old.x = click.x - 1;
 			map->event.old.y = click.y - 1;

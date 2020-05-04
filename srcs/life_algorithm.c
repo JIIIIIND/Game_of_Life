@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 19:46:09 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/04 20:08:04 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		life_algo(t_map *map)
 	draw_panel(&(map->cam), map->limit, map->start);
 	if (map->start == 0)
 		return (0);
-	if (cnt++ < 50)
+	if (cnt++ < map->speed)
 		return (0);
 	else
 		cnt = 0;

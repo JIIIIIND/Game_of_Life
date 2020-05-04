@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 23:18:28 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/30 20:44:29 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/04 20:15:27 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_map
 	t_key_event		event;
 	int				limit;
 	int				start;
+	int				speed;
 	char			cnt;
 	t_list			*head;
 }					t_map;
@@ -55,6 +56,7 @@ void				put_buffer(unsigned int **buffer, t_camera *cam, char **map);
 void				win_main(t_camera *cam);
 void				print_plane(char **world, int limit);
 int					mouse_click(int button, int x, int y, void *p);
+int					mouse_release(int button, int x, int y, void *p);
 int					mouse_event(int x, int y, void *p);
 int					keyboard_event(int buttion, void *p);
 int					clear_heap(t_map *map);
