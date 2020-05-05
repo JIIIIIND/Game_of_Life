@@ -6,12 +6,11 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/01 21:27:18 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 16:13:34 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "mlx_int.h"
 #include "game_of_life.h"
 #include <stdio.h>
 
@@ -113,21 +112,21 @@ int		keyboard_event(int key, void *p)
 	t_map	*map;
 
 	map = (t_map *)(p);
-	if (key == 32)
+	if (key == 49)
 		map->start = switch_flag(map->start);
-	else if (key == 65361)
+	else if (key == 123)
 		camera_move_left(map);
-	else if (key == 65362)
+	else if (key == 126)
 		camera_move_up(map);
-	else if (key == 65363)
+	else if (key == 124)
 		camera_move_right(map);
-	else if (key == 65364)
+	else if (key == 125)
 		camera_move_down(map);
-	else if (key == 61)
+	else if (key == 69)
 		camera_zoom_in(map);
-	else if (key == 45)
+	else if (key == 78)
 		camera_zoom_out(map);
-	else if (key == 65307)
+	else if (key == 53)
 		clear_heap(map);
 	return (0);
 }

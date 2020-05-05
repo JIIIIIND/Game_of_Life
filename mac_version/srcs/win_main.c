@@ -6,14 +6,14 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 23:45:52 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/01 19:45:05 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 16:03:04 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "mlx_int.h"
 #include "libft.h"
 #include "game_of_life.h"
+#include <stdlib.h>
 
 void		win_main(t_camera *cam)
 {

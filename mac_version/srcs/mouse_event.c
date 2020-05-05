@@ -6,15 +6,15 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 16:40:36 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 20:03:20 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 16:03:27 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_int.h"
 #include "mlx.h"
 #include "game_of_life.h"
 #include "draw_btn.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void	switch_value(char **world, t_point point, t_list **head)
 {

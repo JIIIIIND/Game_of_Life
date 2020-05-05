@@ -6,14 +6,13 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 18:40:55 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 19:45:36 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 16:08:15 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "mlx.h"
-#include "mlx_int.h"
 #include "draw_btn.h"
+#include <mlx.h>
 #include "game_of_life.h"
 
 void		put_color(char *data, t_point pos, int size_line,
@@ -97,11 +96,11 @@ void		put_panel(char *data, int width, int height)
 
 void		draw_panel(t_camera *cam, int limit, int start_flag)
 {
-	t_img	*img;
-	char	*data;
-	int		bpp;
-	int		size_line;
-	int		endian;
+	mlx_img_list_t	*img;
+	char			*data;
+	int				bpp;
+	int				size_line;
+	int				endian;
 
 	img = mlx_new_image(cam->mlx, 100, 512);
 	data = mlx_get_data_addr(img, &bpp, &size_line, &endian);

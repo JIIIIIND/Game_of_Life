@@ -6,14 +6,13 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 20:18:56 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 16:02:20 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "game_of_life.h"
 #include "mlx.h"
-#include "mlx_int.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -80,10 +79,11 @@ int		main(int argc, char **argv)
 	map.event.button = 0;
 	win_main(&(map.cam));
 	map.cam.cell_size = (double)(map.cam.end.x - map.cam.start.x) / (double)map.cam.res.x;
-	mlx_hook(map.cam.win, MotionNotify, PointerMotionMask, mouse_event, (void *)(&map));
-	mlx_hook(map.cam.win, ButtonRelease, ButtonReleaseMask, mouse_release, (void *)(&map));
+	mlx_hook(map.cam.win, 6, 6, mouse_event, (void *)(&map));
+	mlx_hook(map.cam.win, 5, 5, mouse_release, (void *)(&map));
 	mlx_mouse_hook(map.cam.win, mouse_click, (void *)(&map));
-	mlx_hook(map.cam.win, KeyPress, KeyPressMask, keyboard_event, (void *)(&map));
+	mlx_hook(map.cam.win, 2, 2, keyboard_event, (void *)(&map));
+	mlx_hook(map.cam.win, 17, 17, clear_heap, (void *)(&map));
 	mlx_loop_hook(map.cam.mlx, life_algo, (void *)(&map));
 	mlx_loop(map.cam.mlx);
 }

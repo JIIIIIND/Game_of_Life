@@ -6,12 +6,11 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 15:10:05 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 19:49:17 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 15:57:05 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "mlx_int.h"
 #include "game_of_life.h"
 #include "draw_ui.h"
 
