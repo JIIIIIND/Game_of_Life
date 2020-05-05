@@ -6,7 +6,7 @@
 #    By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/22 22:13:59 by jinwkim           #+#    #+#              #
-#    Updated: 2020/05/04 20:16:54 by jinwkim          ###   ########.fr        #
+#    Updated: 2020/05/05 15:55:23 by jinwkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS	= ./srcs/main.c \
 		  ./srcs/btn_event.c
 OBJS	= $(SRCS:.c=.o)
 INC		= -I./includes
-LIB		= -L./Library -lft -lmlx -lX11 -lXext -lbsd -lm
+LIB		= -L./Library -lft -lmlx -lm -framework OpenGL -framework GLUT -framework Appkit
 
 all:	$(NAME)
 
