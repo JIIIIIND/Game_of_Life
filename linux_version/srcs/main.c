@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 20:18:56 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 20:04:55 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		clear_heap(t_map *map)
 		index++;
 	}
 	free(map->cam.buffer);
+	mlx_destroy_window(map->cam.mlx, map->cam.win);
 	exit(0);
 }
 

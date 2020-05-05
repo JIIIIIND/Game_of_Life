@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 18:40:55 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 19:45:36 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 18:53:54 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,5 @@ void		draw_panel(t_camera *cam, int limit, int start_flag)
 	draw_minimap(data, cam, size_line, limit);
 	draw_btn(cam->mlx, data, size_line, start_flag);
 	mlx_put_image_to_window(cam->mlx, cam->win, img, 512, 0);
+	mlx_destroy_image(cam->mlx, img);
 }

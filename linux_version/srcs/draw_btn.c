@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 15:10:05 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 19:49:17 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/05 19:00:39 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	draw_speed_down(void *mlx, char *data, int size_line, t_point start)
 		}
 		height++;
 	}
+	mlx_destroy_image(mlx, img);
 }
 
 void	draw_speed_up(void *mlx, char *data, int size_line, t_point start)
@@ -73,6 +74,7 @@ void	draw_speed_up(void *mlx, char *data, int size_line, t_point start)
 		}
 		height++;
 	}
+	mlx_destroy_image(mlx, img);
 }
 
 void	draw_pause(void *mlx, char *data, int size_line, t_point start)
@@ -103,6 +105,7 @@ void	draw_pause(void *mlx, char *data, int size_line, t_point start)
 		}
 		height++;
 	}
+	mlx_destroy_image(mlx, img);
 }
 
 void	draw_start(void *mlx, char *data, int size_line, t_point start)
@@ -122,7 +125,6 @@ void	draw_start(void *mlx, char *data, int size_line, t_point start)
 	{
 		width = 0;
 		while (width < 64)
-
 		{
 			data[(start.y + height) * size_line + (start.x + width) * 4] =
 				img_data[height * line + width * 4];
@@ -136,6 +138,7 @@ void	draw_start(void *mlx, char *data, int size_line, t_point start)
 		}
 		height++;
 	}
+	mlx_destroy_image(mlx, img);
 }
 
 void	draw_btn(void *mlx, char *data, int size_line, int start_flag)
