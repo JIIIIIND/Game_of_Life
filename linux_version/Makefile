@@ -6,7 +6,7 @@
 #    By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/22 22:13:59 by jinwkim           #+#    #+#              #
-#    Updated: 2020/05/04 20:16:54 by jinwkim          ###   ########.fr        #
+#    Updated: 2020/05/06 18:02:12 by jinwkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@ SRCS	= ./srcs/main.c \
 		  ./srcs/life_algorithm.c \
 		  ./srcs/win_main.c \
 		  ./srcs/camera.c \
-		  ./srcs/print_plane.c \
 		  ./srcs/mouse_event.c \
 		  ./srcs/keyboard_event.c \
 		  ./srcs/draw_ui.c \
 		  ./srcs/draw_btn.c \
-		  ./srcs/btn_event.c
+		  ./srcs/btn_event.c \
+		  ./srcs/camera_move.c
 OBJS	= $(SRCS:.c=.o)
 INC		= -I./includes
 LIB		= -L./Library -lft -lmlx -lX11 -lXext -lbsd -lm

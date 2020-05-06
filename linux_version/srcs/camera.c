@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 22:59:20 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 14:51:34 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/06 17:52:43 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ unsigned int	get_color(char **map, int x, int y)
 {
 	if (map[y][x] == '*')
 		return (0x00FFFFFF);
+	else if (map[y][x] > ' ')
+		return (0x00FFFFFF -
+				(map[y][x] * 256 * 256 + map[y][x] * 256 + map[y][x]));
 	else
 		return (0x00000000);
 }
@@ -101,15 +104,11 @@ void			draw_screen(char **map, unsigned int **buffer, t_camera *cam, t_list **ls
 	else
 	{
 		y = 0;
-		while (y < cam->res.y)
+		while (y++ < cam->res.y)
 		{
 			x = 0;
-			while (x < cam->res.x)
-			{
-				mlx_pixel_put(cam->mlx, cam->win, x, y, buffer[y][x]);
-				x++;
-			}
-			y++;
+			while (x++ < cam->res.x)
+				mlx_pixel_put(cam->mlx, cam->win, x - 1, y - 1, buffer[y - 1][x - 1]);
 		}
 	}
 }

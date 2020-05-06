@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 20:08:04 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/06 17:39:44 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,34 @@ int		get_live_neighbor(char **world, t_point point, int limit)
 	x = point.x;
 	y = point.y;
 	result = 0;
-	if ((x - 1 >= 0) && (y - 1 >= 0) && (world[y - 1][x - 1] == '*'))
+	if ((x - 1 >= 0) && (y - 1 >= 0) && (world[y - 1][x - 1] > ' '))
 		result++;
-	if ((x - 1 >= 0) && (world[y][x - 1] == '*'))
+	if ((x - 1 >= 0) && (world[y][x - 1] > ' '))
 		result++;
-	if ((x - 1 >= 0) && (y + 1 < limit) && (world[y + 1][x - 1] == '*'))
+	if ((x - 1 >= 0) && (y + 1 < limit) && (world[y + 1][x - 1] > ' '))
 		result++;
-	if ((y - 1 >= 0) && (world[y - 1][x] == '*'))
+	if ((y - 1 >= 0) && (world[y - 1][x] > ' '))
 		result++;
-	if ((y + 1 < limit) && (world[y + 1][x] == '*'))
+	if ((y + 1 < limit) && (world[y + 1][x] > ' '))
 		result++;
-	if ((x + 1 < limit) && (y - 1 >= 0) && (world[y - 1][x + 1] == '*'))
+	if ((x + 1 < limit) && (y - 1 >= 0) && (world[y - 1][x + 1] > ' '))
 		result++;
-	if ((x + 1 < limit) && (world[y][x + 1] == '*'))
+	if ((x + 1 < limit) && (world[y][x + 1] > ' '))
 		result++;
-	if ((x + 1 < limit) && (y + 1 < limit) && (world[y + 1][x + 1] == '*'))
+	if ((x + 1 < limit) && (y + 1 < limit) && (world[y + 1][x + 1] > ' '))
 		result++;
 	return (result);
 }
 
 char	check_alive(char **buf, t_point point, int neighbor)
 {
-	if (buf[point.y][point.x] == '*')
+	if (buf[point.y][point.x] > ' ')
 	{
 		if ((neighbor < 2) || (neighbor > 3))
 			return (' ');
 		else
-			return ('*');
+			return (buf[point.y][point.x] > 126 ?
+					33 : buf[point.y][point.x] + 1);
 	}
 	else
 	{
