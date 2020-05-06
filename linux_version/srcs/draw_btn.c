@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 15:10:05 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/06 19:21:42 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/06 20:00:50 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	draw_btn(void *mlx, char *data, int size_line, int start_flag)
 	start.x = 17;
 	ui_data.data = data;
 	ui_data.size_line = size_line;
-	while (index < 3)
+	while (index < 4)
 	{
 		start.y = 188 + index * 80;
 		end.x = start.x + 63;
@@ -84,6 +84,8 @@ void	draw_btn(void *mlx, char *data, int size_line, int start_flag)
 			put_image(mlx, &ui_data, "resource/speed_up.xpm", start);
 		else if (index == 2)
 			put_image(mlx, &ui_data, "resource/speed_down.xpm", start);
+		else if (index == 3)
+			put_image(mlx, &ui_data, "resource/save_load.xpm", start);
 		index++;
 	}
 }
