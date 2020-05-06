@@ -6,13 +6,13 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/01 21:27:18 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/06 18:07:40 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "mlx_int.h"
-#include "game_of_life.h"
+#include "camera_move.h"
 #include <stdio.h>
 
 int		switch_flag(int val)
@@ -23,60 +23,17 @@ int		switch_flag(int val)
 		return (0);
 }
 
-void	camera_move_up(t_map *map)
-{
-	if (map->cam.start.y > 0)
-	{
-		map->cam.start.y -= 1;
-		map->cam.end.y -= 1;
-	}
-}
-
-void	camera_move_down(t_map *map)
-{
-	int		limit;
-
-	limit = map->limit - 1;
-	if (map->cam.end.y < limit)
-	{
-		map->cam.end.y += 1;
-		map->cam.start.y += 1;
-	}
-}
-
-void	camera_move_left(t_map *map)
-{
-	if (map->cam.start.x > 0)
-	{
-		map->cam.start.x -= 1;
-		map->cam.end.x -= 1;
-	}
-}
-
-void	camera_move_right(t_map *map)
-{
-	int		limit;
-
-	limit = map->limit - 1;
-	if (map->cam.end.x < limit)
-	{
-		map->cam.end.x += 1;
-		map->cam.start.x += 1;
-	}
-}
-
 void	camera_zoom_in(t_map *map)
 {
-	int		dis;
-
-	dis = map->cam.end.x - map->cam.start.x;
-	if (dis > 1)
+	if ((map->cam.end.x - map->cam.start.x) > 1)
 	{
 		map->cam.end.x -= 1;
 		map->cam.end.y -= 1;
-		map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
-			(double)map->cam.res.x;
+		map->cam.start.x += 1;
+		map->cam.start.y += 1;
 	}
+	map->cam.cell_size = (double)(map->cam.end.x - map->cam.start.x) /
+		(double)map->cam.res.x;
 }
 
 void	camera_zoom_out(t_map *map)
@@ -89,17 +46,17 @@ void	camera_zoom_out(t_map *map)
 		map->cam.end.x += 1;
 		map->cam.end.y += 1;
 	}
-	else if ((map->cam.start.x > 0) && (map->cam.start.y > 0))
+	if ((map->cam.start.x > 0) && (map->cam.start.y > 0))
 	{
 		map->cam.start.x -= 1;
 		map->cam.start.y -= 1;
 	}
-	else if ((map->cam.start.x > 0) && (map->cam.end.y < limit))
+	if ((map->cam.start.x > 0) && (map->cam.end.y < limit))
 	{
 		map->cam.start.x -= 1;
 		map->cam.end.y += 1;
 	}
-	else if ((map->cam.end.x < limit) && (map->cam.start.y > 0))
+	if ((map->cam.end.x < limit) && (map->cam.start.y > 0))
 	{
 		map->cam.end.x += 1;
 		map->cam.start.y -= 1;
