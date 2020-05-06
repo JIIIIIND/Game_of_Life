@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 15:10:05 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/05 15:57:05 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/06 15:43:55 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	draw_speed_down(void *mlx, char *data, int size_line, t_point start)
 	int		line;
 	char	*img_data;
 
-	img = mlx_xpm_file_to_image(mlx, "resource/speed_down.xpm", &width, &height);
+	img = mlx_xpm_file_to_image(mlx,
+			"resource/speed_down.xpm", &width, &height);
 	img_data = mlx_get_data_addr(img, &width, &line, &height);
 	height = 0;
 	while (height < 64)
@@ -42,6 +43,7 @@ void	draw_speed_down(void *mlx, char *data, int size_line, t_point start)
 		}
 		height++;
 	}
+	mlx_destroy_image(mlx, img);
 }
 
 void	draw_speed_up(void *mlx, char *data, int size_line, t_point start)
@@ -72,6 +74,7 @@ void	draw_speed_up(void *mlx, char *data, int size_line, t_point start)
 		}
 		height++;
 	}
+	mlx_destroy_image(mlx, img);
 }
 
 void	draw_pause(void *mlx, char *data, int size_line, t_point start)
@@ -102,6 +105,7 @@ void	draw_pause(void *mlx, char *data, int size_line, t_point start)
 		}
 		height++;
 	}
+	mlx_destroy_image(mlx, img);
 }
 
 void	draw_start(void *mlx, char *data, int size_line, t_point start)
@@ -135,6 +139,7 @@ void	draw_start(void *mlx, char *data, int size_line, t_point start)
 		}
 		height++;
 	}
+	mlx_destroy_image(mlx, img);
 }
 
 void	draw_btn(void *mlx, char *data, int size_line, int start_flag)
