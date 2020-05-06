@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 15:10:05 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/06 17:09:50 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/06 19:21:42 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	draw_btn(void *mlx, char *data, int size_line, int start_flag)
 	ui_data.size_line = size_line;
 	while (index < 3)
 	{
-		start.y = 188 + index * 81;
-		end.x = start.x + 64;
-		end.y = start.y + 64;
+		start.y = 188 + index * 80;
+		end.x = start.x + 63;
+		end.y = start.y + 63;
 		draw_map_square(data, size_line, start, end);
 		if ((start_flag == 0) && (index == 0))
 			put_image(mlx, &ui_data, "resource/start.xpm", start);

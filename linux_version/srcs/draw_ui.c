@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 18:40:55 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/05 18:53:54 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/06 18:59:55 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void		draw_minimap(char *data, t_camera *cam, int width, int limit)
 
 	start.x = 17;
 	start.y = 17;
-	end.x = 81;
-	end.y = 81;
+	end.x = 80;
+	end.y = 80;
 	draw_map_square(data, width, start, end);
 	ratio = 64.0f / (double)(limit);
 	map_start.x = (int)((double)(cam->start.x) * ratio) + 17;
