@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 13:07:59 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/07 13:39:20 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/07 14:10:31 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,8 @@ void	load_map_data(t_map *map, int limit, int fd)
 	index = 0;
 	clear_heap(map);
 	map->world = (char ***)malloc(sizeof(char **) * 2);
-	while (index < limit)
-	{
-		map->world[0] = (char **)malloc(sizeof(char *) * limit);
-		map->world[1] = (char **)malloc(sizeof(char *) * limit);
-		index++;
-	}
-	index = 0;
+	map->world[0] = (char **)malloc(sizeof(char *) * limit);
+	map->world[1] = (char **)malloc(sizeof(char *) * limit);
 	while (index < limit)
 	{
 		map->world[0][index] = (char *)ft_calloc(sizeof(char), limit + 1);
