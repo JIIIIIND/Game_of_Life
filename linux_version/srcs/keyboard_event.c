@@ -6,14 +6,13 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/07 13:16:27 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/07 14:26:34 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "mlx_int.h"
 #include "camera_move.h"
-#include <stdio.h>
 
 int		switch_flag(int val)
 {
