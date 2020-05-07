@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 19:07:21 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/06 21:28:13 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/07 13:34:40 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,14 @@ int		btn_check(int button, int x, int y, t_map *map)
 			printf("input file name\n");
 			get_next_line(0, &path);
 			save_file(map, path);
+			free(path);
 		}
 		else if ((y > 468) && (y < 490))
 		{
 			printf("load\n");
+			get_next_line(0, &path);
+			load_file(map, path);
+			free(path);
 		}
 	}
 	return (0);

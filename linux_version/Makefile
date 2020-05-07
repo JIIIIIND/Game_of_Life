@@ -6,7 +6,7 @@
 #    By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/22 22:13:59 by jinwkim           #+#    #+#              #
-#    Updated: 2020/05/06 21:26:58 by jinwkim          ###   ########.fr        #
+#    Updated: 2020/05/07 13:26:47 by jinwkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS	= ./srcs/main.c \
 		  ./srcs/btn_event.c \
 		  ./srcs/camera_move.c \
 		  ./srcs/get_next_line.c \
-		  ./srcs/save_file.c
+		  ./srcs/save_file.c \
+		  ./srcs/load_file.c
 OBJS	= $(SRCS:.c=.o)
 INC		= -I./includes
 LIB		= -L./Library -lft -lmlx -lX11 -lXext -lbsd -lm

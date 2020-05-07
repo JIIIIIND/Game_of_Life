@@ -6,45 +6,11 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 21:01:26 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/07 12:58:06 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/07 13:25:56 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serialize.h"
-#include "get_next_line.h"
-#include "libft.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-
-void	load_file(char *path)
-{
-	t_map_data	md;
-	t_cam_data	cd;
-	int			fd;
-	char		buf;
-	int			index;
-
-	fd = open(path, O_RDONLY);
-	if (fd > 0)
-	{
-		read(fd, &md, sizeof(t_map_data));
-		index = 0;
-		while (index < 2 * md.limit * md.limit)
-		{
-			read(fd, &buf, 1);
-			index++;
-		}
-		read(fd, &cd, sizeof(t_cam_data));
-		index = 0;
-		while (index < cd.res.x * cd.res.y)
-		{
-			read(fd, &buf, 1);
-			index++;
-		}
-	}
-	close(fd);
-}
 
 void	save_camera_data(unsigned int **buf, t_point res, int fd)
 {

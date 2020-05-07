@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:19:04 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/05 20:04:55 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/07 13:15:42 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int		clear_heap(t_map *map)
+int		close_event(t_map *map)
+{
+	clear_heap(map);
+	mlx_destroy_window(map->cam.mlx, map->cam.win);
+	exit(0);
+}
+
+void	clear_heap(t_map *map)
 {
 	int		index;
 	
@@ -39,8 +46,6 @@ int		clear_heap(t_map *map)
 		index++;
 	}
 	free(map->cam.buffer);
-	mlx_destroy_window(map->cam.mlx, map->cam.win);
-	exit(0);
 }
 
 int		main(int argc, char **argv)
