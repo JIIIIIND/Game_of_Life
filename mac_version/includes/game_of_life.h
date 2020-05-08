@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 23:18:28 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 20:15:27 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/08 12:15:01 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ int					mouse_click(int button, int x, int y, void *p);
 int					mouse_release(int button, int x, int y, void *p);
 int					mouse_event(int x, int y, void *p);
 int					keyboard_event(int buttion, void *p);
-int					clear_heap(t_map *map);
+void				clear_heap(t_map *map);
+int					close_event(t_map *map);
 #endif

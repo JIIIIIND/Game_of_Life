@@ -6,14 +6,13 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 22:26:34 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/04 20:08:04 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/07 14:52:01 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_of_life.h"
 #include "draw_ui.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 
 int		get_live_neighbor(char **world, t_point point, int limit)
@@ -25,33 +24,34 @@ int		get_live_neighbor(char **world, t_point point, int limit)
 	x = point.x;
 	y = point.y;
 	result = 0;
-	if ((x - 1 >= 0) && (y - 1 >= 0) && (world[y - 1][x - 1] == '*'))
+	if ((x - 1 >= 0) && (y - 1 >= 0) && (world[y - 1][x - 1] > ' '))
 		result++;
-	if ((x - 1 >= 0) && (world[y][x - 1] == '*'))
+	if ((x - 1 >= 0) && (world[y][x - 1] > ' '))
 		result++;
-	if ((x - 1 >= 0) && (y + 1 < limit) && (world[y + 1][x - 1] == '*'))
+	if ((x - 1 >= 0) && (y + 1 < limit) && (world[y + 1][x - 1] > ' '))
 		result++;
-	if ((y - 1 >= 0) && (world[y - 1][x] == '*'))
+	if ((y - 1 >= 0) && (world[y - 1][x] > ' '))
 		result++;
-	if ((y + 1 < limit) && (world[y + 1][x] == '*'))
+	if ((y + 1 < limit) && (world[y + 1][x] > ' '))
 		result++;
-	if ((x + 1 < limit) && (y - 1 >= 0) && (world[y - 1][x + 1] == '*'))
+	if ((x + 1 < limit) && (y - 1 >= 0) && (world[y - 1][x + 1] > ' '))
 		result++;
-	if ((x + 1 < limit) && (world[y][x + 1] == '*'))
+	if ((x + 1 < limit) && (world[y][x + 1] > ' '))
 		result++;
-	if ((x + 1 < limit) && (y + 1 < limit) && (world[y + 1][x + 1] == '*'))
+	if ((x + 1 < limit) && (y + 1 < limit) && (world[y + 1][x + 1] > ' '))
 		result++;
 	return (result);
 }
 
 char	check_alive(char **buf, t_point point, int neighbor)
 {
-	if (buf[point.y][point.x] == '*')
+	if (buf[point.y][point.x] > ' ')
 	{
 		if ((neighbor < 2) || (neighbor > 3))
 			return (' ');
 		else
-			return ('*');
+			return (buf[point.y][point.x] > 126 ?
+					33 : buf[point.y][point.x] + 1);
 	}
 	else
 	{
@@ -80,14 +80,31 @@ void	update_planes(char ***world, int limit)
 	}
 }
 
+void	next_generation(char ***world, int limit, char cnt)
+{
+	t_point	point;
+
+	point.y = 0;
+	while (point.y < limit)
+	{
+		point.x = 0;
+		while (point.x < limit)
+		{
+			(world[(cnt + 1) % 2][point.y][point.x]) =
+				check_alive(world[cnt % 2], point,
+					get_live_neighbor(world[cnt % 2], point, limit));
+			point.x++;
+		}
+		point.y++;
+	}
+}
+
 int		life_algo(t_map *map)
 {
-	t_point		point;
 	char		***world;
 	int			limit;
 	static int	cnt;
 
-	point.y = 0;
 	world = map->world;
 	limit = map->limit;
 	put_buffer(map->cam.buffer, &(map->cam), world[map->cnt % 2]);
@@ -99,18 +116,7 @@ int		life_algo(t_map *map)
 		return (0);
 	else
 		cnt = 0;
-	while (point.y < limit)
-	{
-		point.x = 0;
-		while (point.x < limit)
-		{
-			(world[(map->cnt + 1) % 2][point.y][point.x]) =
-				check_alive(world[map->cnt % 2], point,
-					get_live_neighbor(world[map->cnt % 2], point, limit));
-			point.x++;
-		}
-		point.y++;
-	}
+	next_generation(world, limit, map->cnt);
 	map->cnt = (map->cnt + 1) % 2;
 	return (0);
 }

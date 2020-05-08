@@ -6,13 +6,13 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 18:40:55 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/06 15:40:53 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/08 12:16:35 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "mlx.h"
 #include "draw_btn.h"
-#include <mlx.h>
 #include "game_of_life.h"
 
 void		put_color(char *data, t_point pos, int size_line,
@@ -62,8 +62,8 @@ void		draw_minimap(char *data, t_camera *cam, int width, int limit)
 
 	start.x = 17;
 	start.y = 17;
-	end.x = 81;
-	end.y = 81;
+	end.x = 80;
+	end.y = 80;
 	draw_map_square(data, width, start, end);
 	ratio = 64.0f / (double)(limit);
 	map_start.x = (int)((double)(cam->start.x) * ratio) + 17;

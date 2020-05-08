@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_plane.c                                      :+:      :+:    :+:   */
+/*   camera_move.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/22 23:09:17 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/04/22 23:46:17 by jinwkim          ###   ########.fr       */
+/*   Created: 2020/05/06 17:58:23 by jinwkim           #+#    #+#             */
+/*   Updated: 2020/05/06 17:59:41 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef CAMERA_MOVE_H
+# define CAMERA_MOVE_H
 
-void	print_plane(char **world, int limit)
-{
-	int		idx;
+# include "game_of_life.h"
 
-	idx = 0;
-	printf("========================================\n");
-	while (idx < limit)
-	{
-		printf("%s\n", world[idx]);
-		idx++;
-	}
-	printf("========================================\n");
-}
+void	camera_move_up(t_map *map);
+void	camera_move_down(t_map *map);
+void	camera_move_left(t_map *map);
+void	camera_move_right(t_map *map);
+
+#endif

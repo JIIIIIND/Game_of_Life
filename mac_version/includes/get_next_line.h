@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_btn.h                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 15:21:23 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/08 12:23:42 by jinwkim          ###   ########.fr       */
+/*   Created: 2020/03/05 18:03:54 by jinwkim           #+#    #+#             */
+/*   Updated: 2020/05/06 20:06:52 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_BTN_H
-# define DRAW_BTN_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <stdlib.h>
 
-# include "game_of_life.h"
-# include <OpenGL/gl.h>
-# include <OpenGL/glu.h>
-# include <OpenGL/glext.h>
-# include "mlx_int.h"
-
-typedef struct	s_ui
+typedef struct	s_info
 {
-	char		*data;
-	int			size_line;
-	char		*img_data;
-	int			line;
-}				t_ui;
+	char		*old;
+	int			len;
+	int			index;
+	int			ret;
+	int			val;
+}				t_info;
 
-void	draw_btn(void *mlx, char *data, int size_line, int start_flag);
-int		btn_check(int button, int x, int y, t_map *map);
+int				get_next_line(int fd, char **line);
 #endif

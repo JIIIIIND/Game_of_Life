@@ -6,23 +6,26 @@
 #    By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/22 22:13:59 by jinwkim           #+#    #+#              #
-#    Updated: 2020/05/05 15:55:23 by jinwkim          ###   ########.fr        #
+#    Updated: 2020/05/08 12:26:34 by jinwkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= life
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror -g -D BUFFER_SIZE=16
 SRCS	= ./srcs/main.c \
 		  ./srcs/life_algorithm.c \
 		  ./srcs/win_main.c \
 		  ./srcs/camera.c \
-		  ./srcs/print_plane.c \
 		  ./srcs/mouse_event.c \
 		  ./srcs/keyboard_event.c \
 		  ./srcs/draw_ui.c \
 		  ./srcs/draw_btn.c \
-		  ./srcs/btn_event.c
+		  ./srcs/btn_event.c \
+		  ./srcs/camera_move.c \
+		  ./srcs/get_next_line.c \
+		  ./srcs/load_file.c \
+		  ./srcs/save_file.c
 OBJS	= $(SRCS:.c=.o)
 INC		= -I./includes
 LIB		= -L./Library -lft -lmlx -lm -framework OpenGL -framework GLUT -framework Appkit
