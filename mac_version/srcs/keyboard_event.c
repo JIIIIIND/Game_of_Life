@@ -6,7 +6,7 @@
 /*   By: jinwkim <jinwkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 19:24:25 by jinwkim           #+#    #+#             */
-/*   Updated: 2020/05/08 12:13:15 by jinwkim          ###   ########.fr       */
+/*   Updated: 2020/05/10 07:05:23 by jinwkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int		keyboard_event(int key, void *p)
 		camera_move_right(map);
 	else if (key == 125)
 		camera_move_down(map);
-	else if (key == 69)
+	else if (key == 24)
 		camera_zoom_in(map);
-	else if (key == 78)
+	else if (key == 27)
 		camera_zoom_out(map);
 	else if (key == 53)
 		close_event(map);
